@@ -1,0 +1,13 @@
+{
+    "baseUrl": "http://localhost:1234",
+    "experimentalStudio": true,
+    "ignoreTestFiles": [
+      "**/*.snap",
+      "**/__snapshot__/*",
+      "**/smoke.js",
+      "reportWebVitals.ts"
+    ],
+    "env": {
+      "cypress-plugin-snapshots": {}
+    }
+  }

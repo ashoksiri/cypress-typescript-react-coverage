@@ -2,6 +2,24 @@
   "name": "cypress-test",
   "version": "0.1.0",
   "private": true,
+  "devDependencies": {
+    "@babel/core": "7.13.14",
+    "@babel/plugin-proposal-private-property-in-object": "^7.18.6",
+    "@babel/preset-react": "7.13.13",
+    "@cypress/code-coverage": "3.9.4",
+    "@cypress/instrument-cra": "^1.4.0",
+    "@types/react-test-renderer": "^18.0.0",
+    "babel-plugin-istanbul": "6.0.0",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "coveralls": "3.1.0",
+    "cross-env": "7.0.3",
+    "cypress": "6.9.1",
+    "cypress-react-unit-test": "4.17.2",
+    "istanbul-lib-coverage": "3.0.0",
+    "parcel-bundler": "1.12.5",
+    "react-test-renderer": "^18.2.0",
+    "start-server-and-test": "1.12.1"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -16,16 +34,38 @@
     "typescript": "^4.8.3",
     "web-vitals": "^2.1.4"
   },
+  "keywords": [
+    "cypress",
+    "cypress-example",
+    "code-coverage"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashoksiri/cypress-typescript-react-coverage.git"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "start-test 1234 cypress:run",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:verify": "cypress verify",
+    "start": "cross-env NODE_ENV=test PORT=1234 react-scripts -r @cypress/instrument-cra start",
+    "dev": "cross-env NODE_ENV=test start-test 1234 cypress:open",
+    "report:coverage": "nyc report --reporter=html",
+    "report:coverage:text": "nyc report --reporter=text",
+    "report:coverage:summary": "nyc report --reporter=text-summary",
+    "coveralls": "cat coverage/lcov.info | coveralls",
+    "component": "npx cypress open --config-file cypress-unit.json"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "nyc": {
+    "exclude": [
+      "src/reportWebVitals.ts"
     ]
   },
   "browserslist": {
